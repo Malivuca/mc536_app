@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const PORT = 4000
 
-export const getAllPF = axios
+export const getAllPF = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
@@ -14,7 +14,7 @@ export const getAllPF = axios
     console.log(error)
   })
 
-export const getAuxRecPF = axios
+export const getAuxRecPF = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
@@ -26,7 +26,7 @@ export const getAuxRecPF = axios
     console.log(error)
   })
 
-export const getAuxBusPF = axios
+export const getAuxBusPF = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
@@ -39,7 +39,7 @@ export const getAuxBusPF = axios
   })
 
 // -- Relação de todos os governos com suas ofertas de vagas de emprego
-export const getEmpOferecidos = axios
+export const getEmpOferecidos = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
@@ -52,7 +52,7 @@ export const getEmpOferecidos = axios
   })
 
 // -- Relação de todos os governos com a quantidade de auxilios oferecidos
-export const getQuantAuxOferecidos = axios
+export const getQuantAuxOferecidos = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
@@ -65,7 +65,7 @@ export const getQuantAuxOferecidos = axios
   })
 
 // -- Relação de todos os governos com seus auxílios oferecidos
-export const getAuxOferecidos = axios
+export const getAuxOferecidos = () => axios
   .get(`localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
