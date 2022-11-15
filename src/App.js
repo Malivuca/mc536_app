@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  showAllPF() {
+    this.setState(prevState => {
+      const newState = {...prevState}
+      newState.count = newState.count + 1
+      return newState
+    })
+  }
+
+  render() {
+    const c = this.state.count
+    return (
+      <div>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+        <button onClick={this.showAllPF}>Listar pessoas físicas</button>
+      </div>
+    );
+  }
 }
-
-export default App;
