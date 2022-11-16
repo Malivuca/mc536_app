@@ -4,7 +4,7 @@ const PORT = 4000
 
 export const createAux = (auxilio) =>
   axios
-    .post(`localhost:${PORT}/URI`, auxilio)
+    .post(`http://localhost:${PORT}/URI`, auxilio)
     .then(function (response) {
       // handle success
       console.log(response)
@@ -17,7 +17,7 @@ export const createAux = (auxilio) =>
 
 export const createVagaEmp = (vagaEmp) =>
   axios
-    .post(`localhost:${PORT}/URI`, vagaEmp)
+    .post(`http://localhost:${PORT}/URI`, vagaEmp)
     .then(function (response) {
       // handle success
       console.log(response)

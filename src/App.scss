@@ -142,7 +142,10 @@ h1 {
   margin-bottom: 30px;
 }
 
-table, th, tr, td {
+table,
+th,
+tr,
+td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: large;
   border: 2px solid black;
@@ -183,6 +186,17 @@ td {
     margin-bottom: 50px;
   }
 
+  :first-child {
+    margin-left: 0;
+  }
+}
+
+.styledForm {
+  margin-bottom: 50px;
+  label {
+    margin-left: 10px;
+  }
+  
   :first-child {
     margin-left: 0;
   }

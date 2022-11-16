@@ -3,7 +3,7 @@ import axios from 'axios'
 const PORT = 4000
 
 export const getAllPF = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
@@ -15,7 +15,7 @@ export const getAllPF = () => axios
   })
 
 export const getAuxRecPF = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
@@ -27,7 +27,7 @@ export const getAuxRecPF = () => axios
   })
 
 export const getAuxBusPF = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
@@ -40,7 +40,7 @@ export const getAuxBusPF = () => axios
 
 // -- Relação de todos os governos com suas ofertas de vagas de emprego
 export const getEmpOferecidos = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
@@ -53,7 +53,7 @@ export const getEmpOferecidos = () => axios
 
 // -- Relação de todos os governos com a quantidade de auxilios oferecidos
 export const getQuantAuxOferecidos = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
@@ -66,7 +66,7 @@ export const getQuantAuxOferecidos = () => axios
 
 // -- Relação de todos os governos com seus auxílios oferecidos
 export const getAuxOferecidos = () => axios
-  .get(`localhost:${PORT}/URI`)
+  .get(`http://localhost:${PORT}/URI`)
   .then(function (response) {
     // handle success
     console.log(response)
