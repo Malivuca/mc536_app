@@ -20,7 +20,8 @@ export class App extends React.Component {
     const c = this.state.count
     return (
       <div className="container">
-        <section className='menu'>
+        <h1>UTOPIA DB</h1>
+        <section className="menu">
           <button onClick={this.showAllPF}>Listar pessoas físicas</button>
           <button onClick={this.showAllPF}>Listar pessoas físicas</button>
           <button onClick={this.showAllPF}>Listar pessoas físicas</button>
@@ -33,6 +34,8 @@ export class App extends React.Component {
           <tr>
             <th>ID</th>
             <th>Info</th>
+            <th>Outra coisa</th>
+            <th>Ainda outra</th>
           </tr>
           <tr>
             <td>41421</td>
