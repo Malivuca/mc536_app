@@ -192,12 +192,40 @@ td {
 }
 
 .styledForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
   margin-bottom: 50px;
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
   label {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 10px;
+    font-size: large;
+    color: white;
+    padding: 10px;
     margin-left: 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    // max-width: 500px;
+    background-color: #00a5e0;
+    border: none;
+    &:hover {
+      cursor: pointer;
+      filter: brightness(80%);
+    }
   }
-  
-  :first-child {
-    margin-left: 0;
-  }
+}
+
+.formSection {
+  margin-bottom: 10px;
 }
