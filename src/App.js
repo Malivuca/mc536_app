@@ -2,6 +2,7 @@ import React from 'react'
 import './index.scss'
 import './App.scss'
 import { getAllPF , getAuxRecPF , getAuxBusPF , getAuxOferecidos, getEmpOferecidos, getQuantAuxOferecidos } from './backend/requisitions'
+import { createAux , createVagaEmp } from './backend/inserts'
 
 export class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,13 @@ export class App extends React.Component {
         duracao: 0
       },
       propsEmp: {
-
+        tipo_vaga: "",
+        n_vagas: 0,
+        local: "",
+        horario: "",
+        contato_entrevista: "",
+        experiencia_exigiga: "",
+        remuneracao: 0
       }
     }
   }
@@ -29,30 +36,32 @@ export class App extends React.Component {
     })
   }
 
-  createEmp = () => {
-
-  }
-
-  createAux = () => {
+  updateCreateAux = (saving = false) => {
     this.setState(prevState => {
       const newState = { ...prevState }
-      newState.createAux = true
+      newState.creatingAux = !saving
       return newState
     })
+
+    if (saving)
+      createAux(this.state.propsAux)
+  }
+
+  updateCreateEmp = (saving = false) => {
+    this.setState(prevState => {
+      const newState = { ...prevState }
+      newState.creatingEmp = !saving
+      return newState
+    })
+
+    if (saving)
+      createVagaEmp(this.state.propsEmp)
   }
 
   changeProp = (typeProp, fieldProp, value) => {
     this.setState(prevState => {
       const newState = { ...prevState }
       newState[typeProp][fieldProp] = value
-      return newState
-    })
-  }
-
-  saveAux = () => {
-    this.setState(prevState => {
-      const newState = { ...prevState }
-      newState.createAux = false
       return newState
     })
   }
@@ -67,18 +76,37 @@ export class App extends React.Component {
           <button onClick={() => this.changeList(getEmpOferecidos)}>Vagas de emprego oferecidas</button>
           <button onClick={() => this.changeList(getQuantAuxOferecidos)}>Quantidade de auxílios oferecidos</button>
           <button onClick={() => this.changeList(getAuxOferecidos)}>Auxílios oferecidos</button>
-          <button onClick={() => this.createEmp()}>Criar vaga de emprego</button>
-          <button onClick={() => this.createAux()}>Criar auxílio</button>
+          <button onClick={() => this.updateCreateEmp()}>Criar vaga de emprego</button>
+          <button onClick={() => this.updateCreateAux()}>Criar auxílio</button>
         </section>
 
-        <form submit = {() => this.saveAux()}>
+        {this.state.creatingAux && <form submit = {() => this.updateCreateAux(true)}>
           <label>Valor mensal: </label>
           <input onChange={(value) => this.changeProp("propsAux", "valor_mensal", value.target.value)}/>
           <label>Valor total: </label>
           <input onChange={(value) => this.changeProp("propsAux", "valor_total", value.target.value)}/>
           <label>Duração (em meses): </label>
           <input type = "number" onChange={(value) => this.changeProp("propsAux", "duracao", value.target.value)}/>
-        </form>
+          <input type="submit" value="Submit" />
+        </form>}
+
+        {this.state.creatingEmp && <form submit = {() => this.updateCreateEmp(true)}>
+          <label>Tipo da vaga: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "tipo_vaga", value.target.value)}/>
+          <label>Número de vagas: </label>
+          <input type = "number" onChange={(value) => this.changeProp("propsEmp", "n_vagas", value.target.value)}/>
+          <label>Local: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "local", value.target.value)}/>
+          <label>Horário: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "horario", value.target.value)}/>
+          <label>Contato para entrevista: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "contato_entrevista", value.target.value)}/>
+          <label>Experiência exigida: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "experiencia_exigida", value.target.value)}/>
+          <label>Remuneração: </label>
+          <input onChange={(value) => this.changeProp("propsEmp", "remuneracao", value.target.value)}/>
+          <input type="submit" value="Submit" />
+        </form>}
       </div>
     )
   }
