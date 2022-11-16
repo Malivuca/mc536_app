@@ -149,12 +149,12 @@ export class App extends React.Component {
             <tr>
               <th></th>
               <th>Info</th>
-              <th>Outra coisa</th>
-              <th>Ainda outra</th>
+              <th></th>
+              <th></th>
             </tr>
             <tr>
-              <td>41421</td>
-              <td>Ola porra</td>
+              <td>8380380</td>
+              <td>Vazio</td>
             </tr>
           </table>
         )}
