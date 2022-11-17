@@ -10,12 +10,31 @@ import {
   getQuantAuxOferecidos,
 } from './backend/requisitions'
 import { createAux, createVagaEmp } from './backend/inserts'
+import auxilios from './backend/auxilios.json'
+import pessoas from './backend/pessoas.json'
+import Table from './components/table'
+
+const types = ['auxilios', 'pessoas']
 
 export class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: [],
+      type: '',
+      list: [
+        {
+          id: 10,
+          valor_mensal: 'R$1000.00',
+          valor_total: 'R$12000.00',
+          duracao_meses: 12,
+        },
+        {
+          id: 11,
+          valor_mensal: 'R$2000.00',
+          valor_total: 'R$12000.00',
+          duracao_meses: 6,
+        },
+      ],
       creatingAux: false,
       creatingEmp: false,
       propsAux: {
@@ -41,6 +60,27 @@ export class App extends React.Component {
       const newState = { ...prevState }
       newState.list = getNewList()
       return newState
+    })
+  }
+
+  changeListMock = (type) => {
+    this.setState((prevState) => ({ ...prevState, creatingAux: false, creatingEmp: false }))
+    this.setState((prevState) => {
+      const newState = { ...prevState }
+      switch (type) {
+        case 'auxilios':
+          auxilios.forEach((auxilio) => {
+            newState.list.push(auxilio)
+          })
+          break
+        case 'pessoas':
+          pessoas.forEach((pessoa) => {
+            newState.list.push(pessoa)
+          })
+          break
+        default:
+          break
+      }
     })
   }
 
@@ -80,18 +120,29 @@ export class App extends React.Component {
   }
 
   render() {
+    const { type } = this.state
     return (
       <div className="container">
         <h1>UTOPIA DB</h1>
         <section className="menu">
-          <button onClick={() => this.changeList(getAllPF)}>Pessoas físicas</button>
-          <button onClick={() => this.changeList(getAuxRecPF)}>Listar pessoas e seus auxílios recebidos</button>
-          <button onClick={() => this.changeList(getAuxBusPF)}>Listar pessoas e seus auxílios buscados</button>
-          <button onClick={() => this.changeList(getEmpOferecidos)}>Vagas de emprego oferecidas</button>
-          <button onClick={() => this.changeList(getQuantAuxOferecidos)}>Quantidade de auxílios oferecidos</button>
-          <button onClick={() => this.changeList(getAuxOferecidos)}>Auxílios oferecidos</button>
-          <button onClick={() => this.updateCreateEmp()}>Criar vaga de emprego</button>
-          <button onClick={() => this.updateCreateAux()}>Criar auxílio</button>
+          <h1>Listar:</h1>
+          <div>
+            <button onClick={() => this.setState({ type: 'pessoas', creatingEmp: false, creatingAux: false })}>
+              Pessoas físicas
+            </button>
+            <button onClick={() => this.changeListMock(getAuxRecPF)}>Pessoas e seus auxílios recebidos</button>
+            <button onClick={() => this.changeList(getAuxBusPF)}>Pessoas e seus auxílios buscados</button>
+            <button onClick={() => this.changeList(getEmpOferecidos)}>Vagas de emprego oferecidas</button>
+            {/* <button onClick={() => this.changeList(getQuantAuxOferecidos)}>Quantidade de auxílios oferecidos</button> */}
+            <button onClick={() => this.setState({ type: 'auxilios', creatingEmp: false, creatingAux: false })}>
+              Auxílios oferecidos
+            </button>
+          </div>
+          <h1>Criar:</h1>
+          <div>
+            <button onClick={() => this.updateCreateEmp()}>Vaga de emprego</button>
+            <button onClick={() => this.updateCreateAux()}>Auxílio</button>
+          </div>
         </section>
 
         {this.state.creatingAux && (
@@ -145,19 +196,25 @@ export class App extends React.Component {
         )}
 
         {!(this.state.creatingEmp || this.state.creatingAux) && (
-          <table>
-            <tr>
-              <th></th>
-              <th>Info</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <td>8380380</td>
-              <td>Vazio</td>
-            </tr>
-          </table>
+          <Table type={type} data={type === 'pessoas' ? pessoas : auxilios} />
         )}
+        {/* <table>
+            <tr>
+              <th>ID</th>
+              <th>Valor Mensal</th>
+              <th>Valor Total</th>
+              <th>Duracao (meses)</th>
+            </tr>
+            {auxilios.map((auxilio) => (
+              <tr>
+                <td>{auxilio.id}</td>
+                <td>{auxilio.valor_mensal}</td>
+                <td>{auxilio.valor_total}</td>
+                <td>{auxilio.duracao_meses}</td>
+              </tr>
+            ))}
+            <tr></tr>
+          </table> */}
       </div>
     )
   }

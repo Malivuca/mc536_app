@@ -140,6 +140,7 @@ h1 {
   font-size: xx-large;
   font-weight: 800;
   margin-bottom: 30px;
+  color: white;
 }
 
 table,
@@ -148,39 +149,55 @@ tr,
 td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: large;
-  border: 2px solid black;
+  border: 2px solid white;
+  box-sizing: border-box;
+  color: white;
 }
 table {
   width: 100%;
+  max-width: 1220px;
 }
-td {
+td, th {
+  // display: flex;
   padding: 10px;
+  text-align: center;
 }
 
 .container {
   display: flex;
-  height: 100%;
+  min-height: 100%;
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  background-color: #32cbff;
+  // background-color: #32cbff;
+  background-color: #954BF2;
 }
 
 .menu {
   display: flex;
-  justify-content: center;
-  button {
-    font-size: large;
-    color: white;
-    padding: 10px;
-    margin-left: 10px;
-    font-weight: 600;
-    border-radius: 10px;
-    background-color: #00a5e0;
-    border: none;
-    &:hover {
-      cursor: pointer;
-      filter: brightness(80%);
+  flex-direction: column;
+  // border: 2px solid white;
+  // justify-content: center;
+  // background-color: red;
+  div {
+    display: flex;
+    justify-content: center;
+    button {
+      font-size: large;
+      color: white;
+      padding: 20px;
+      margin-left: 10px;
+      font-weight: 600;
+      max-width: 200px;
+      border-radius: 10px;
+      background-color: #954BF2;
+      // background-color: #4BB4F2;
+      border: 1px solid white;
+      // height: 80px;
+      &:hover {
+        cursor: pointer;
+        filter: brightness(80%);
+      }
     }
 
     margin-bottom: 50px;
@@ -197,6 +214,7 @@ td {
   max-width: 800px;
   width: 100%;
   margin-bottom: 50px;
+  color: white;
   input {
     width: 100%;
     margin-bottom: 10px;

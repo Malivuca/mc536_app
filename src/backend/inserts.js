@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const PORT = 4000
+const PORT = 8989
 
 export const createAux = (auxilio) =>
   axios
-    .post(`http://localhost:${PORT}/URI`, auxilio)
+    .post(`http://localhost:${PORT}`, auxilio)
     .then(function (response) {
       // handle success
       console.log(response)
